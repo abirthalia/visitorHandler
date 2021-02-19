@@ -1,32 +1,42 @@
 package com.task.register.visitor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Visitor {
-    private String newVisitor;
+    private Integer visitorId;
     private String visitorName;
     private Integer visitingFlat;
-    private LocalDate visitorDate;
-    private String visitorEntryOrExit;
+    private LocalDate visitingDate;
+    private LocalTime visitingTime;
+    private String visitingStatus;
 
     public Visitor() {
     }
 
-    public Visitor(String newVisitor, String visitorName, Integer visitingFlat, LocalDate visitorDate, String visitorEntryOrExit) {
-        this.newVisitor = newVisitor;
+    public Visitor(Integer visitorId,
+                   String visitorName,
+                   Integer visitingFlat,
+                   LocalDate visitingDate,
+                   LocalTime visitingTime,
+                   String visitingStatus) {
+        this.visitorId = visitorId;
         this.visitorName = visitorName;
         this.visitingFlat = visitingFlat;
-        this.visitorDate = visitorDate;
-        this.visitorEntryOrExit = visitorEntryOrExit;
+        this.visitingDate = visitingDate;
+        this.visitingTime = visitingTime;
+        this.visitingStatus = visitingStatus;
     }
 
 
-    public String getNewVisitor() {
-        return newVisitor;
+    public Integer getVisitorId() {
+        return visitorId;
     }
 
-    public void setNewVisitor(String newVisitor) {
-        this.newVisitor = newVisitor;
+    public void setVisitorId(Integer visitorId) {
+        this.visitorId = visitorId;
     }
 
     public String getVisitorName() {
@@ -45,20 +55,29 @@ public class Visitor {
         this.visitingFlat = visitingFlat;
     }
 
-    public LocalDate getVisitorDate() {
-        return visitorDate;
+    public LocalDate getVisitingDate() {
+        return visitingDate;
     }
 
-    public void setVisitorDate(LocalDate visitorDate) {
-        this.visitorDate = visitorDate;
+    public void setVisitingDate(LocalDate visitingDate) {
+        this.visitingDate = visitingDate;
     }
 
-    public String getVisitorEntryOrExit() {
-        return visitorEntryOrExit;
+    public LocalTime getVisitingTime() {
+        return visitingTime;
     }
 
-    public void setVisitorEntryOrExit(String visitorEntryOrExit) {
-        this.visitorEntryOrExit = visitorEntryOrExit;
+    public void setVisitingTime(LocalTime visitingTime) {
+        this.visitingTime = visitingTime;
+    }
+
+    public String getVisitingStatus() {
+        return visitingStatus;
+    }
+
+    public void setVisitingStatus(String visitingStatus) {
+        this.visitingStatus = visitingStatus;
     }
 
 }
+
