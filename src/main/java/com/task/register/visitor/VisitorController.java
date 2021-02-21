@@ -22,23 +22,24 @@ public class VisitorController {
     }
 
     @PostMapping(value = "/visitors")
-    public List<Visitor> addVisitor(@RequestBody Visitor visitor){
+    public Visitor addVisitor(@RequestBody Visitor visitor){
         return visitorService.addVisitor(visitor);
     }
 
     @GetMapping("/visitors/{visitingDate}")
-    public List<Visitor> getVisitor(@PathVariable@DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate visitingDate){
-        return visitorService.getVisitor(visitingDate);
+    public List<Visitor> getVisitorByDate(@PathVariable@DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate visitingDate){
+        return visitorService.getVisitorByDate(visitingDate);
     }
 
     @GetMapping("visitors/check/{visitorId}")
-    public ResponseEntity<Map<String, Boolean>> checkVisitor(@PathVariable("visitorId") Integer visitorId){
+    public String checkVisitor(@PathVariable("visitorId") Integer visitorId){
         return visitorService.checkVisitor(visitorId);
     }
 
     @PutMapping(value = "visitors/updateStatus/{visitorId}")
-    public void updateVisitor(@RequestBody Visitor visitor,@PathVariable("visitorId") Integer visitorId){
-         visitorService.updateVisitor(visitorId, visitor);
+    @ResponseBody
+    public Visitor updateVisitor(@PathVariable("visitorId") Integer visitorId, @RequestBody Visitor visitor){
+        return visitorService.updateVisitor(visitorId, visitor);
     }
 
 

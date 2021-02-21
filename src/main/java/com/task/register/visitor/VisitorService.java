@@ -34,38 +34,36 @@ public class VisitorService {
         return visitorList;
     }
 
-    public List<Visitor>addVisitor(Visitor visitor){
+    public Visitor addVisitor(Visitor visitor){
         visitorList.add(visitor);
-        return visitorList;
+        return visitor;
     }
 
-    public List<Visitor> getVisitor(LocalDate visitingDate){
+    public List<Visitor> getVisitorByDate(LocalDate visitingDate){
         return visitorList.stream().filter(visitor -> visitor.getVisitingDate().equals(visitingDate)).collect(Collectors.toList());
 
     }
 
-    public ResponseEntity<Map<String, Boolean>> checkVisitor(Integer visitorId) {
+    public String checkVisitor(Integer visitorId) {
         for (Visitor visitor : visitorList)
-        if (visitor.getVisitorId() == visitorId) {
-            Map<String, Boolean> map = new HashMap<>();
-            map.put("visitorExist", true);
-            return new ResponseEntity<>(map, HttpStatus.OK);
-        }
-        else {
-            Map<String, Boolean> map = new HashMap<>();
-            map.put("visitorExist", false);
-            return new ResponseEntity<>(map, HttpStatus.OK);
-        }
-            return null;
+            if (visitor.getVisitorId() == visitorId) {
+                return "Visitor already Exists";
+            }
+            else {
+                return "Visitor does not Exists";
+            }
+        return null;
     }
 
-    public void updateVisitor(Integer visitorId, Visitor visitor) {
+    public Visitor updateVisitor(Integer visitorId, Visitor visitor) {
         for (int i=0; i< visitorList.size() ; i++){
             Visitor visitor1 = visitorList.get(i);
             if (visitor1.getVisitorId().equals(visitorId)){
                 visitorList.set(i, visitor);
-                return;
+                return visitor;
             }
         }
+        return null;
+
     }
 }
